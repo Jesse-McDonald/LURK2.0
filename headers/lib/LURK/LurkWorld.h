@@ -5,6 +5,7 @@
 #include<lurkPks.h>
 #include<LURK.h>
 #include<string>
+#include<unordered_map>
 namespace LURK{
 	class World{
 		public:
@@ -18,7 +19,7 @@ namespace LURK{
 		std::vector<charPkg> players;//all players in the room
 		std::vector<charPkg> monsters;//all monsters in the room
 		std::vector<charPkg> lootables;//all lootables in the room
-		std::map<std::string,charPkg> allPlayers;//all players encountered on the server this session
+		std::unordered_map<std::string,charPkg> allPlayers;//all players encountered on the server this session
 		std::vector<msgPkg> chat; //a queue of all chat messages sent or received in chronological order (also some error messages encoded as msgPkg
 		std::vector<errorPkg> error;//all unhandled errors that the player may wish to know about
 		
@@ -38,7 +39,7 @@ namespace LURK{
 		//The username will be automatically converted to the initial name of the player
 		//returns false if the server can not be found
 		
-
+		
 		//The following functions are to be called from lurk handlers to update internal status 
 		void handle(msgPkg message);//appends message to chat, no error checking on target is performed
 		void handle(errorPkg err);//append error to the error list, also converts relevent errors to messages and appends to messages
@@ -54,6 +55,12 @@ namespace LURK{
 		World();//prep empty lurk instance
 		World(std::string ip, std::string port);//takes the ip or url of the server followed by the port
 		World(std::string ipPort);//takes ip or url and port in 1 line, see connect(std::string ipPort)
+		
+		//internal functions for helping, not priviate because they could be usefull and wont be harmfull of externaly used		
+		void handleLoot(charPkg);
+		void handleMonster(charPkg);
+		void handlePlayer(charPkg);
+		int findChr(std::vector<charPkg>& array, charPkg target);
 	};
 
 };

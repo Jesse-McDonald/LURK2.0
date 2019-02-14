@@ -169,7 +169,7 @@ namespace LURK{
 			void setFlag(int index,bool set);//QOL function to ease setting a specific bit in flags
 			bool getFlag(int index);//QOL function to ease getting a specific bit in flags
 			std::string name;
-			uint8_t flags;
+			uint8_t flags;//alive,pvp,monster,started,ready,reserved,reserved,reserved
 			uint16_t atk;
 			uint16_t def;
 			uint16_t reg;
