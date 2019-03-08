@@ -155,6 +155,7 @@ namespace LURK{
 			std::string name;
 			std::string description;
 			roomPkg();
+			
 	};
 
 	class charPkg:public pkg{	//type 10
@@ -193,6 +194,13 @@ namespace LURK{
 			uint16_t statMax;
 			std::string description;
 			gamePkg();
+gamePkg operator=(gamePkg in){
+				this->init=in.init;
+				this->statMax=in.statMax;
+				this->type=in.type;
+				this->description=in.description;
+				return *this;
+			}
 	};
 
 	class leavePkg:public pkg{	//type 12

@@ -2,13 +2,16 @@
 #include <LURK.h>
 #include <bitset>
 #include <var.h>
+#include <LurkWorld.h>
+#include <debug.h>
 using namespace std;
 using namespace LURK;
 void* handlePkg(LURK::pkg* pak,void* t){
 	std::cout<<"basic Pkg"<<std::endl;
 	std::cout<<(int)pak->type<<std::endl<<std::endl;
 
-	pak->send(lurk.network);	
+	//pak->send(lurk.network);
+	((World*)t)->handle(*pak);	
 }
 void* handleMsgPkg(LURK::pkg* pak,void* t){
 	LURK::msgPkg* pk=(LURK::msgPkg*)pak;
@@ -18,7 +21,9 @@ void* handleMsgPkg(LURK::pkg* pak,void* t){
 	std::cout<<pk->recName<<std::endl;
 	std::cout<<pk->msg<<std::endl<<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
+
 }
 void* handleChRoomPkg(LURK::pkg* pak,void* t){
 	LURK::chRoomPkg* pk=(LURK::chRoomPkg*)pak;
@@ -26,14 +31,16 @@ void* handleChRoomPkg(LURK::pkg* pak,void* t){
 	std::cout<<(int)pk->type<<std::endl;
 	std::cout<<pk->number <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 } 
 void* handleFightPkg(LURK::pkg* pak,void* t){
 	LURK::fightPkg* pk=(LURK::fightPkg*)pak;
 	std::cout<<"Fight Pkg"<<std::endl;
 	std::cout<<(int)pk->type<<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 } 
 void* handlePvpPkg(LURK::pkg* pak,void* t){
 	LURK::pvpPkg* pk=(LURK::pvpPkg*)pak;
@@ -41,7 +48,8 @@ void* handlePvpPkg(LURK::pkg* pak,void* t){
 	std::cout<<(int)pk->type<<std::endl;
 	std::cout<<pk->target <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleLootPkg(LURK::pkg* pak,void* t){
 	LURK::lootPkg* pk=(LURK::lootPkg*)pak;
@@ -49,14 +57,16 @@ void* handleLootPkg(LURK::pkg* pak,void* t){
 	std::cout<<(int)pk->type<<std::endl;
 	std::cout<<pk->target<<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleStartPkg(LURK::pkg* pak,void* t){
 	LURK::startPkg* pk=(LURK::startPkg*)pak;
 	std::cout<<"Start Pkg"<<std::endl;
 	std::cout<<(int)pk->type<<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleErrorPkg(LURK::pkg* pak,void* t){
 	LURK::errorPkg* pk=(LURK::errorPkg*)pak;
@@ -65,7 +75,8 @@ void* handleErrorPkg(LURK::pkg* pak,void* t){
 	std::cout<<(int)pk->code <<std::endl;
 	std::cout<<pk->msg <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 } 
 void* handleAccPkg(LURK::pkg* pak,void* t){
 	LURK::accPkg* pk=(LURK::accPkg*)pak;
@@ -73,7 +84,8 @@ void* handleAccPkg(LURK::pkg* pak,void* t){
 	std::cout<<(int)pk->type<<std::endl;
 	std::cout<<(int)pk->accType <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleRoomPkg(LURK::pkg* pak,void* t){
 	LURK::roomPkg* pk=(LURK::roomPkg*)pak;
@@ -83,7 +95,8 @@ void* handleRoomPkg(LURK::pkg* pak,void* t){
 	std::cout<<pk->name <<std::endl;
 	std::cout<<pk->description <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleCharPkg(LURK::pkg* pak,void* t){
 	LURK::charPkg* pk=(LURK::charPkg*)pak;
@@ -99,7 +112,8 @@ void* handleCharPkg(LURK::pkg* pak,void* t){
 	std::cout<<pk->room <<std::endl;
 	std::cout<<pk->description <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleGamePkg(LURK::pkg* pak,void* t){
 	LURK::gamePkg* pk=(LURK::gamePkg*)pak;
@@ -109,14 +123,16 @@ void* handleGamePkg(LURK::pkg* pak,void* t){
 	std::cout<<pk->statMax <<std::endl;
 	std::cout<<pk->description <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleLeavePkg(LURK::pkg* pak,void* t){
 	LURK::leavePkg* pk=(LURK::leavePkg*)pak;
 	std::cout<<"Leave Pkg"<<std::endl;
 	std::cout<<(int)pk->type<<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 }  
 void* handleConnectionPkg(LURK::pkg* pak,void* t){
 	LURK::connectionPkg* pk=(LURK::connectionPkg*)pak;
@@ -126,7 +142,8 @@ void* handleConnectionPkg(LURK::pkg* pak,void* t){
 	std::cout<<pk->name <<std::endl;
 	std::cout<<pk->description <<std::endl;
 
-	pk->send(lurk.network);
+	//pk->send(lurk.network);
+	((World*)t)->handle(*pk);
 } 
 int lurkInit(std::vector<std::string> args){
 	
