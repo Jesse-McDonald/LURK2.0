@@ -23,6 +23,12 @@ glinit(argc,argv);//do this first, prevents nasty supprizes
 //I think lighting is killed now figure out what the problem is
 	stack.push(new ServerSelect(args));
 
+	if(args.size()<3){//use this if to determin initial screen
+		std::cout<<"Usage: "<<args[0]<<" serverIp port"<<std::endl; //if server select screen added remove this line... I think
+	}else{
+		debug("pushing world");
+		stack.push(new WorldState(args));
+	}
 	glutMainLoop();
 	//this stuff will run if the window is closed
 	debug("Exiting main");

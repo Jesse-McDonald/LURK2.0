@@ -145,7 +145,7 @@ void* handleConnectionPkg(LURK::pkg* pak,void* t){
 	//pk->send(lurk.network);
 	((World*)t)->handle(*pk);
 } 
-int lurkInit(std::vector<std::string> args){
+int lurkInit(std::vector<std::string> args,void * gameObj){
 	
 	LURK::pkg* base= new LURK::pkg();//create base package
 
@@ -178,13 +178,15 @@ int lurkInit(std::vector<std::string> args){
 	base->packages[11]->registerHandler(handleGamePkg); 
 	base->packages[12]->registerHandler(handleLeavePkg); 
 	base->packages[13]->registerHandler(handleConnectionPkg); 
-	
+	if(!(gameObj==nullptr)){
+		lurk.gameObj=gameObj;
+	}
 	lurk.connect(args[1],args[2]);
 	if (lurk.network.error){
 		perror("Network Error");
 		exit(0);
 	}
-	lurk.startHandler();
+	//lurk.startHandler();
 
 	return 0;
 }

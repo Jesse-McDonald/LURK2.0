@@ -11,16 +11,7 @@ ServerSelect::ServerSelect(){
 
 }
 ServerSelect::ServerSelect(std::vector<std::string> args){
-	debug("server select con");
-	debug(args.size());
-	if(args.size()<3){//use this if to determin initial screen
-		
-		std::cout<<"Usage: "<<args[0]<<" serverIp port"<<std::endl; //if server select screen added remove this line... I think
-	}else{
-		debug("pushing world");
-		stack.push(new WorldState(args));
 
-	}
 
 }
 State& ServerSelect::background(){

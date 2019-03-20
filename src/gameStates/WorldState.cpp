@@ -26,9 +26,9 @@ WorldState::WorldState(std::vector<std::string> args):WorldState(){
 	if(args.size()<3){//use this if to determin initial screen
 		
 		std::cout<<"Usage: "<<args[0]<<" serverIp port"<<std::endl; 
-		stack.pop();
+		//stack.pop();//we arent on the stack yet
 	}else{
-		lurkInit(args);
+		lurkInit(args,(void *)this);
 	}
 
 }

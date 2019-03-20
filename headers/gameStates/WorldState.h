@@ -18,7 +18,7 @@ class WorldState: public State{
 
 	LURK::LURK lurk;
 	View view;
-	float x,y,z;//temp player xy
+	float x,y,z;//temp player xyz
 	WorldState();
 	WorldState(std::vector<std::string> args);
 	State& init();
