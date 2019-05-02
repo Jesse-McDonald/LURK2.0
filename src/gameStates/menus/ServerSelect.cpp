@@ -6,7 +6,9 @@
 #include <var.h>
 #include <WorldState.h>
 #include <debug.h>
+#include <imgui.h>
 //add stuff here later I supose
+using namespace ImGui;
 ServerSelect::ServerSelect(){
 
 }
@@ -21,6 +23,9 @@ State& ServerSelect::background(){
 State& ServerSelect::init(){
 debug("server select init");
 	glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
 	return *this;
 }
 State& ServerSelect::ui(){
@@ -37,15 +42,17 @@ State& ServerSelect::ui(){
 	glVertex3f(.1, 0, 0);
 	glVertex3f(-.1, 0, 0);
 	glEnd();
+
 	
+	ShowDemoWindow();
 
 	return *this;
 }
 State& ServerSelect::process(int dt){
-	std::cout<<"Connecting to isoptera.lcsc.edu:5100"<<std::endl;//temp 
-	std::vector<std::string> args=std::vector<std::string>();
-	args.push_back("Bypass");
-	args.push_back("isoptera.lcsc.edu");
-	args.push_back("5191");//this is a bit hacky but it should work
-	stack.push(new WorldState(args));
+	//std::cout<<"Connecting to isoptera.lcsc.edu:5100"<<std::endl;//temp 
+	//std::vector<std::string> args=std::vector<std::string>();
+	//args.push_back("Bypass");
+	//args.push_back("isoptera.lcsc.edu");
+	//args.push_back("5191");//this is a bit hacky but it should work
+	//stack.push(new WorldState(args));
 }

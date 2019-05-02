@@ -6,12 +6,12 @@ def tree(directory,target="f"):
 		if target=="f":
 			for file in files:
 				paths.append(currentDir+"/"+file)
-			for dir in dirs:
-				paths+=(tree(dir))
 		if target=="d":
-			paths.append(currentDir)
+			#paths.append(currentDir)
 			for dir in dirs:
-				paths+=(tree(dir,"d"))
+				paths.append(currentDir+"/"+dir)
+	for i in range(len(paths)):
+		paths[i]=paths[i].replace("\\","/")
 	return paths
 
 
